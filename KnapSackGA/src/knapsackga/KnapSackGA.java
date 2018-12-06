@@ -18,7 +18,7 @@ public class KnapSackGA {
         // Create GA object
         GeneticAlgorithm ga = new GeneticAlgorithm(6, 0.2, 0.1, 4,4);
         // Initialize population
-        Population population = ga.initPopulation(15);
+        Population population = ga.initPopulation(13);
         // Evaluate population
         ga.evalPopulation(population);
         // Keep track of current generation

@@ -16,20 +16,10 @@ public class GeneticAlgorithm {
     private double crossoverRate;
     private int tournamentSize;
     private int elitismCount;
-    //{3,4}, {3,4}, {3,4}, {3,4}, {3,4},
-//        {4,5}, {4,5}, {4,5},
-//        {7,10},{7,10},{8,11},{8,11},{9,13}};
-   private int val[] = new int[]{15, 1, 10, 6, 3, 9, 11, 8, 13, 14, 4, 7, 12, 5, 2};//1,2,7,9,10,14  15+1+11+13+14+5
-   private int wt[] = new int[]{1, 2, 13, 4, 5, 6, 7, 8, 9, 10, 12, 11, 14, 3, 15};
-   private int knapSackWeightCapacity = 32; // i.e 5 elements
-   // private int val[] = new int[]{4,4,4,4,4,5,5,5,10,10,11,11,13};
-  //  private int wt[] = new int[]{3,3,3,3,3,4,4,4,7,7,8,8,9};
-//    private int knapSackWeightCapacity = 32; // i.e 5 elements
-  //  private int knapSackWeightCapacity = 17;
-    private double optimumValue = 79.00; //79.00 actual
-  //  private double optimumValue =  24.00;
-    private static double bestSolution = 0.0;  //
+    private static double bestSolution = 0.0;
     private static Individual bestSolutionInd;
+    
+    private KnapSack ks = new KnapSack();
 
     public GeneticAlgorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize) {
         this.populationSize = populationSize;
@@ -53,38 +43,21 @@ public class GeneticAlgorithm {
         population.setPopulationFitness(populationFitness);
     }
 
-//    //Calculate Fitness.
-//    public double calcFitness(Individual individual) {
-//        // Track number of correct genes
-//        int correctGenes = 0;
-//        // Loop over individual's genes
-//        for (int geneIndex = 0; geneIndex < individual.getChromosomeLength();
-//                geneIndex++) {
-//            // Add one fitness point for each "1" found
-//            if (individual.getGene(geneIndex) == 1) {
-//                correctGenes += 1;
-//            }
-//        }
-//
-//        double fitness = (double) correctGenes / individual.
-//                getChromosomeLength();
-//        // Store fitness
-//        individual.setFitness(fitness);
-//        return fitness;
-//    }
     public double calcFitness(Individual individual) {
-
+        System.out.println(ks);
         double total_weight = 0.0;
         double total_value = 0.0;
         double difference;
         double fitness = 0.0;
         for (int geneIndex = 0; geneIndex < individual.getChromosomeLength(); geneIndex++) {
             if (individual.getGene(geneIndex) == 1) {
+                int wt[] = ks.getWt();
+                int val[] = ks.getVal();
                 total_weight = total_weight + wt[geneIndex];
                 total_value = total_value + val[geneIndex];
             }
         }
-
+        int knapSackWeightCapacity = ks.getKnapSackWeightCapacity();
         difference = knapSackWeightCapacity - total_weight;
 
         if (difference >= 0) {
@@ -103,9 +76,8 @@ public class GeneticAlgorithm {
     //Check termination condition
     public boolean isTerminationConditionMet(Population population) {
         for (Individual individual : population.getIndividuals()) {
-            System.out.println(individual.getFitness() + " : " + optimumValue);
-            if (individual.getFitness() == optimumValue) {
-//                System.out.println(individual.getFitness() + " : " + optimumValue);
+            System.out.println(individual.getFitness() + " : " + ks.getOptimumValue());
+            if (individual.getFitness() == ks.getOptimumValue()) {
                 return true;
             }
         }
@@ -146,8 +118,8 @@ public class GeneticAlgorithm {
 
     //Crossover 
     public Population crossoverPopulation(Population population) {
-        int crossoverYescount =0;
-        int crossoverNocount =0;
+        int crossoverYescount = 0;
+        int crossoverNocount = 0;
         // Create new population
         Population newPopulation = new Population(population.size());
         // Loop over current population by fitness
@@ -177,7 +149,7 @@ public class GeneticAlgorithm {
                 newPopulation.setIndividual(populationIndex, parent1);
             }
         }
-        
+
         System.out.println("Yes" + crossoverYescount);
         System.out.println("No" + crossoverNocount);
 //        System.exit(0);
