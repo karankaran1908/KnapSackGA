@@ -1,5 +1,5 @@
 Project: Knapsack using Genetic Algorithm
-Team- INFO6205_234
+**Team- INFO6205_234
 Team Member- Karan Karan, Ritesh Manek
 
 1. Introduction
