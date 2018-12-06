@@ -2,7 +2,7 @@ Project: Knapsack using Genetic Algorithm
 
 Team- INFO6205_234
 
-Team Member- Karan Karan, Ritesh Manek
+Team Member- Karan Karan(001449291), Ritesh Manek(001494692)
 
 1. Introduction
 
@@ -15,5 +15,5 @@ The objective of the project is the implementation of the genetic algorithm for 
 
 3. Implementation
 
-Project source code in the project/src folder.
+Project source code in the KnapSackGA/src/knapsackga folder.
 A detailed report of this project and including basics about genetic algorithms in file named: Project Report- Knapsack using GA.pdf
