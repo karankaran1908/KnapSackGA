@@ -13,7 +13,7 @@ GAs have shown to be well suited for high-quality solutions to larger NP problem
 2. Problem Statement
 
 The objective of the project is the implementation of the genetic algorithm for solving the knapsack problem. In the report, we mentioned two selection functions, roulette-wheel and tournament selection, but we have implemented tournament selection in the program. Although roulette-wheel function code is also present in code but commented. The results from both of them differed depending on whether we used elitism or not. Elitism significantly improved the performance of the tournament selection function. Moreover, we tested the program with different crossover ratios, mutation rate but the results given were not that different. Interesting way to understand a knapsack problem is mentioned in image below.
-
+https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiQlrmsmIzfAhWSmeAKHb9nD10QjRx6BAgBEAQ&url=https%3A%2F%2Fslideplayer.com%2Fslide%2F11955816%2F&psig=AOvVaw2QEIE_y32jwybEUAmt96eE&ust=1544219534450540
 
 3. Implementation
 
