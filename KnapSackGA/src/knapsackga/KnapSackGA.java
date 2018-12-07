@@ -19,20 +19,20 @@ public class KnapSackGA {
         // Create GA object
         GeneticAlgorithm ga = new GeneticAlgorithm(6, 0.2, 0.1, 4,4,ks);
         // Initialize population
-        Population population = ga.initPopulation(13);
+        Population population = ga.initializePopulation(13);
         // Evaluate population
-        ga.evalPopulation(population);
+        ga.evaluatePopulation(population);
         // Keep track of current generation
         int generationCount = 1;
         while (ga.isTerminationConditionMet(population) == false && generationCount<1000) {
             // Print fittest individual from population
             System.out.println("Best solution: " + population.getFittest(0).toString());
             // Apply crossover
-            population = ga.crossoverPopulation(population);
+            population = ga.crossover(population);
             // Apply mutation
-            population = ga.mutatePopulation(population);
+            population = ga.mutate(population);
             // Evaluate population
-            ga.evalPopulation(population);
+            ga.evaluatePopulation(population);
             Individual individuals[] = population.getIndividuals();
             System.out.println("Generation Count : "+generationCount);
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
