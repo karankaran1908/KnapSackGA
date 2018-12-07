@@ -23,13 +23,12 @@ public class KnapsackgaTest {
     public void testSolveKnapSack1() {
         try {
             KnapSack ks = new KnapSack();
-            int wt[] = new int[]{23,31,29,44,53,38,63,85,89,82};
-            int val[] = new int[]{92,57,49,68,60,43,67,84,87,72};
-            String solution = "1111010000";
-            double optVal = 309.00;
+            int val[] = new int[]{60, 100, 120};
+            int wt[] = new int[]{10, 20, 30};
+            double optVal = 220.00;
             ks.setWt(wt);
             ks.setVal(val);
-            ks.setKnapSackWeightCapacity(165);
+            ks.setKnapSackWeightCapacity(50);
             ks.setOptimumValue(optVal);
             ks.setChromosomeLength(val.length);
             GeneticAlgorithm ga = new GeneticAlgorithm(6, 0.2, 0.1, 4, 4,ks);
