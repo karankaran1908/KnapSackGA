@@ -18,9 +18,8 @@ public class GeneticAlgorithm {
     private int elitismCount;
     private double bestSolution = 0.0;
     private KnapSack ks;
-    
 
-    public GeneticAlgorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize,KnapSack ks) {
+    public GeneticAlgorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize, KnapSack ks) {
         this.populationSize = populationSize;
         this.mutationRate = mutationRate;
         this.crossoverRate = crossoverRate;
@@ -72,10 +71,23 @@ public class GeneticAlgorithm {
 
     }
 
+    /**
+     * Gets mean fitness of generation
+     */
+    public double getMeanFitness(Population population) {
+        double total_weight = 0.0;
+        double total_value = 0.0;
+        double difference;
+        double total_fitness = 0.0;
+        double meanFitness = 0.0;
+        meanFitness = population.getPopulationFitness()/population.size();
+//        population.
+        return meanFitness;
+    }
+
     //Check termination condition
     public boolean isTerminationConditionMet(Population population) {
         for (Individual individual : population.getIndividuals()) {
-            System.out.println(individual.getFitness() + " : " + ks.getOptimumValue());
             if (individual.getFitness() == ks.getOptimumValue()) {
                 return true;
             }
@@ -153,8 +165,7 @@ public class GeneticAlgorithm {
         Population newPopulation = new Population(this.populationSize);
         // Loop over current population by fitness
         for (int populationIndex = 0; populationIndex < population.size(); populationIndex++) {
-            Individual individual = population.
-                    getFittest(populationIndex);
+            Individual individual = population.getFittest(populationIndex);
             // Loop over individual's genes
             for (int geneIndex = 0; geneIndex < individual.getChromosomeLength(); geneIndex++) {
                 // Skip mutation if this is an elite individual

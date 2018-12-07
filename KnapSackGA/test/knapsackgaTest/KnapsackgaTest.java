@@ -39,6 +39,7 @@ public class KnapsackgaTest {
             ga.evalPopulation(population);
             // Keep track of current generation
             int generationCount = 1;
+            System.out.println("Initial count"+generationCount);
             while (ga.isTerminationConditionMet(population) == false && generationCount < 1000) {
                 // Print fittest individual from population
                 System.out.println("Best solution: " + population.getFittest(0).toString());
@@ -80,6 +81,7 @@ public class KnapsackgaTest {
             ga.evalPopulation(population);
             // Keep track of current generation
             int generationCount = 1;
+            System.out.println("Initial count"+generationCount);
             while (ga.isTerminationConditionMet(population) == false && generationCount < 1000) {
                 // Print fittest individual from population
                 System.out.println("Best solution: " + population.getFittest(0).toString());
@@ -121,6 +123,7 @@ public class KnapsackgaTest {
             ga.evalPopulation(population);
             // Keep track of current generation
             int generationCount = 1;
+            System.out.println("Initial count"+generationCount);
             while (ga.isTerminationConditionMet(population) == false && generationCount < 1000) {
                 // Print fittest individual from population
                 System.out.println("Best solution: " + population.getFittest(0).toString());

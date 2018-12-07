@@ -2,8 +2,11 @@
 *.class
 
 # Ignore folder named 'build'
+nbproject/**
 build/**
 nbproject/private/**
+dist/**
+build.xml
 
 # Log file
 *.log
