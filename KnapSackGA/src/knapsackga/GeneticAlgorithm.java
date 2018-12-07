@@ -16,17 +16,17 @@ public class GeneticAlgorithm {
     private double crossoverRate;
     private int tournamentSize;
     private int elitismCount;
-    private static double bestSolution = 0.0;
-    private static Individual bestSolutionInd;
+    private double bestSolution = 0.0;
+    private KnapSack ks;
     
-    private KnapSack ks = new KnapSack();
 
-    public GeneticAlgorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize) {
+    public GeneticAlgorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize,KnapSack ks) {
         this.populationSize = populationSize;
         this.mutationRate = mutationRate;
         this.crossoverRate = crossoverRate;
         this.elitismCount = elitismCount;
         this.tournamentSize = tournamentSize;
+        this.ks = ks;
     }
 
     public Population initPopulation(int chromosomeLength) {
@@ -44,7 +44,6 @@ public class GeneticAlgorithm {
     }
 
     public double calcFitness(Individual individual) {
-        System.out.println(ks);
         double total_weight = 0.0;
         double total_value = 0.0;
         double difference;
@@ -118,8 +117,6 @@ public class GeneticAlgorithm {
 
     //Crossover 
     public Population crossoverPopulation(Population population) {
-        int crossoverYescount = 0;
-        int crossoverNocount = 0;
         // Create new population
         Population newPopulation = new Population(population.size());
         // Loop over current population by fitness
@@ -127,7 +124,6 @@ public class GeneticAlgorithm {
             Individual parent1 = population.getFittest(populationIndex);
             // Apply crossover to this individual?
             if (this.crossoverRate > Math.random() && populationIndex > this.elitismCount) {
-                crossoverYescount++;
                 // Initialize offspring
                 Individual offspring = new Individual(parent1.getChromosomeLength());
                 // Find second parent
@@ -144,15 +140,11 @@ public class GeneticAlgorithm {
                 // Add offspring to new population
                 newPopulation.setIndividual(populationIndex, offspring);
             } else {
-                crossoverNocount++;
                 // Add individual to new population without applying crossover
                 newPopulation.setIndividual(populationIndex, parent1);
             }
         }
 
-        System.out.println("Yes" + crossoverYescount);
-        System.out.println("No" + crossoverNocount);
-//        System.exit(0);
         return newPopulation;
     }
 

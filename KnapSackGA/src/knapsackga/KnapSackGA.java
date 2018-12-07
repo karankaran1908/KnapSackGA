@@ -15,8 +15,9 @@ public class KnapSackGA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        KnapSack ks =new KnapSack();
         // Create GA object
-        GeneticAlgorithm ga = new GeneticAlgorithm(6, 0.2, 0.1, 4,4);
+        GeneticAlgorithm ga = new GeneticAlgorithm(6, 0.2, 0.1, 4,4,ks);
         // Initialize population
         Population population = ga.initPopulation(13);
         // Evaluate population
