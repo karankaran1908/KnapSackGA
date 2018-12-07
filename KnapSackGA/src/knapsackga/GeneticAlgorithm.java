@@ -28,21 +28,21 @@ public class GeneticAlgorithm {
         this.ks = ks;
     }
 
-    public Population initPopulation(int chromosomeLength) {
+    public Population initializePopulation(int chromosomeLength) {
         Population population = new Population(this.populationSize, chromosomeLength);
         return population;
     }
 
     //Evaluate Population
-    public void evalPopulation(Population population) {
+    public void evaluatePopulation(Population population) {
         double populationFitness = 0;
         for (Individual individual : population.getIndividuals()) {
-            populationFitness += calcFitness(individual);
+            populationFitness += individualFitnessCalculations(individual);
         }
         population.setPopulationFitness(populationFitness);
     }
 
-    public double calcFitness(Individual individual) {
+    public double individualFitnessCalculations(Individual individual) {
         double total_weight = 0.0;
         double total_value = 0.0;
         double difference;
@@ -57,18 +57,15 @@ public class GeneticAlgorithm {
         }
         int knapSackWeightCapacity = ks.getKnapSackWeightCapacity();
         difference = knapSackWeightCapacity - total_weight;
-
+        
+        //If fitness exceeds knapsack capacity then fitness is 0;
         if (difference >= 0) {
             fitness = total_value;
         } else {
-            fitness = 0.0; // individual will be remove from population
+            fitness = 0.0;
         }
-
-        // Store fitness
         individual.setFitness(fitness);
-
         return fitness;
-
     }
 
     /**
@@ -81,7 +78,6 @@ public class GeneticAlgorithm {
         double total_fitness = 0.0;
         double meanFitness = 0.0;
         meanFitness = population.getPopulationFitness()/population.size();
-//        population.
         return meanFitness;
     }
 
@@ -128,7 +124,7 @@ public class GeneticAlgorithm {
     }
 
     //Crossover 
-    public Population crossoverPopulation(Population population) {
+    public Population crossover(Population population) {
         // Create new population
         Population newPopulation = new Population(population.size());
         // Loop over current population by fitness
@@ -160,9 +156,9 @@ public class GeneticAlgorithm {
         return newPopulation;
     }
 
-    public Population mutatePopulation(Population population) {
+    public Population mutate(Population population) {
         // Initialize new population
-        Population newPopulation = new Population(this.populationSize);
+        Population nextPopulationSet = new Population(this.populationSize);
         // Loop over current population by fitness
         for (int populationIndex = 0; populationIndex < population.size(); populationIndex++) {
             Individual individual = population.getFittest(populationIndex);
@@ -183,10 +179,10 @@ public class GeneticAlgorithm {
                 }
             }
             // Add individual to population
-            newPopulation.setIndividual(populationIndex, individual);
+            nextPopulationSet.setIndividual(populationIndex, individual);
         }
         // Return mutated population
-        return newPopulation;
+        return nextPopulationSet;
     }
 
 }
