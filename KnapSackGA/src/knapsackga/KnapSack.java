@@ -5,6 +5,8 @@
  */
 package knapsackga;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Ritesh
@@ -15,12 +17,14 @@ public class KnapSack {
     private int wt[] = {};
     private int knapSackWeightCapacity;
     private double optimumValue;
+    private int chromosomeLength;
 
     public KnapSack() {
         this.val = new int[]{4, 4, 4, 4, 4, 5, 5, 5, 10, 10, 11, 11, 13};
         this.wt = new int[]{3, 3, 3, 3, 3, 4, 4, 4, 7, 7, 8, 8, 9};
         this.knapSackWeightCapacity = 32;
         this.optimumValue = 24.00;
+        this.chromosomeLength = this.val.length;
     }
 
     public int[] getVal() {
@@ -54,6 +58,15 @@ public class KnapSack {
     public void setOptimumValue(double optimumValue) {
         this.optimumValue = optimumValue;
     }
+
+    public int getChromosomeLength() {
+        return chromosomeLength;
+    }
+
+    public void setChromosomeLength(int chromosomeLength) {
+        this.chromosomeLength = chromosomeLength;
+    }
+    
     
 
 }

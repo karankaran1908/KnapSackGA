@@ -17,8 +17,7 @@ public class Individual {
     public Individual(int[] chromosome) {
 // Create individual chromosome
         this.chromosome = chromosome;
-    }
-    
+    }    
     
     //Adding values to Knapsack
     //If gene is 1 corresponding value and weight index is added to knapsack.
