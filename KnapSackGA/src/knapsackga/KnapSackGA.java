@@ -33,11 +33,22 @@ public class KnapSackGA {
             population = ga.mutatePopulation(population);
             // Evaluate population
             ga.evalPopulation(population);
+            Individual individuals[] = population.getIndividuals();
+            System.out.println("Generation Count : "+generationCount);
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("Individual    | Fitness");
+            for(Individual individual : individuals){
+                System.out.println(individual +" | "+individual.getFitness());
+            }
+//            ga.getMeanFitness(population);
+            System.out.println("Mean fitnesss for generation :"+generationCount+" is : "+ga.getMeanFitness(population));
             // Increment the current generation
             generationCount++;
+            
         }
         System.out.println("Found solution in " + generationCount + "generations");
         System.out.println("Best solution: " + population.getFittest(0).toString());
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
 }
